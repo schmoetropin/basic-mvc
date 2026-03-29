@@ -7,7 +7,7 @@ import Footer from './Footer';
 
 //const API = 'http://marcospaulopeters-scandiwebjrtest.epizy.com/api/api.php';
 // Thats where i put the api in my machine
-const API = 'http://127.0.0.1/workspace/scandiweb-jr-web/src/api/api.php';
+const API = 'http://127.0.0.1:8000/api.php';
 
 export default class App extends React.Component{
     constructor(props){
@@ -45,11 +45,12 @@ export default class App extends React.Component{
 
     // Send a form to api to display all products
     getProducts = () => {
-        let fd = new FormData();
-        fd.append('displayProducts', 1);
-        fetch(API, {
-            method: 'POST',
-            body:fd
+        fetch(`${API}?displayProducts=1`, {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Content-type': 'application/json',
+            }
         })
         .then(resp => resp.json())
         .then(respJson => {

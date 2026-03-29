@@ -12,7 +12,7 @@ class Connection
     private string $host = '127.0.0.1';
     private string $database = 'scandiwebTestDb';
     private string $user = 'root';
-    private string $password = '';
+    private string $password = 'root';
     /*
     private PDO $connection;
     private string $host = 'sql209.epizy.com';
@@ -29,8 +29,7 @@ class Connection
             $this->connection->setAttribute(PDO::ATTR_STRINGIFY_FETCHES, false);
             return $this->connection;
         } catch (PDOException $e) {
-            // echo $e->getMessage();
-            return null;
+            throw new PDOException($e->getMessage());
         }
     }
 };
