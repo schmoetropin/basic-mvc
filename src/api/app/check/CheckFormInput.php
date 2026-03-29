@@ -1,27 +1,33 @@
 <?php
-    declare(strict_types=1);
+declare(strict_types=1);
 
-    namespace App\Check;
+namespace App\Check;
 
-    use \App\Con\Connection;
+use \App\Con\Connection;
+use \Exception;
 
-    class CheckFormInput extends Connection
+class CheckFormInput extends Connection
+{
+    use CheckDataTrait;
+
+    // Check if objectType was created or its null
+    public function checkTypeObject($typeObj): ?object
     {
-        use CheckDataTrait;
-
-        // Check if objectType was created or its null
-        public function checkTypeObject($typeObj): ?object
-        {
+        try {
             if (!is_null($typeObj)) {
                 return $typeObj;
             }
             echo $this->error(8);
             return null;
+        } catch (Exception $e) {
+            throw new Exception($e->getMessage());
         }
+    }
 
-        // Check the name
-        public function checkName(array $input): ?string
-        {
+    // Check the name
+    public function checkName(array $input): ?string
+    {
+        try {
             if (isset($input['name'])) {
                 $name = $this->cleanStripTagsTrim($input['name']);
                 if (!$this->checkEmptyInput($name)) {
@@ -36,11 +42,15 @@
             } 
             echo $this->error(10);
             return null;
+        } catch (Exception $e) {
+            throw new Exception($e->getMessage());
         }
+    }
 
-        // Check the SKU
-        public function checkSku(array $input): ?string
-        {
+    // Check the SKU
+    public function checkSku(array $input): ?string
+    {
+        try {
             if (isset($input['sku'])) {
                 $sku = $this->cleanStripTagsTrim($input['sku']);
                 if (!$this->checkEmptyInput($sku)) {
@@ -58,17 +68,21 @@
             }
             echo $this->error(9);
             return null;
+        } catch (Exception $e) {
+            throw new Exception($e->getMessage());
         }
+    }
 
-        // Check the price
-        public function checkPrice(array $input): ?int
-        {
-            return $this->checkIntNumber($input, 'price');
-        }
+    // Check the price
+    public function checkPrice(array $input): ?int
+    {
+        return $this->checkIntNumber($input, 'price');
+    }
 
-        // Check any integer input
-        public function checkIntNumber(array $input, string $name): ?int
-        {
+    // Check any integer input
+    public function checkIntNumber(array $input, string $name): ?int
+    {
+        try {
             if (isset($input[$name])) {
                 $number = $this->cleanStripTagsTrim($input[$name]);
                 if (!$this->checkEmptyInput($number)) {
@@ -83,30 +97,36 @@
             }
             echo $this->error(11, $name);
             return null;
+        } catch (Exception $e) {
+            throw new Exception($e->getMessage());
         }
+    }
 
-        // Displays all invalid posts or errors
-        private function error(int $n, string $name = null): string
-        {
+    // Displays all invalid posts or errors
+    private function error(int $n, string $name = null): string
+    {
+        try {
             $upName = null;
             if (!is_null($name)) {
                 $upName = ucfirst($name);
             }
             $err = [
-/*00*/          '*Please, submit the name.',
-/*01*/          '*Name should be between 4 and 20 characters.',
-/*02*/          '*Please, submit the SKU.',
-/*03*/          '*SKU should be between 4 and 20 characters.',
-/*04*/          '*This SKU is already registered.',
-/*05*/          '*Please, submit the '.$name.'.',
-/*06*/          '*Please, provide the data of indicated type in '.$name.'.',
-/*07*/          '*Only positive numbers are accepetd in '.$name.'.',
-/*08*/          '*Select the product type on the Type switcher.',
-/*09*/          '*SKU invalid input.',
-/*10*/          '*Name invalid input.',
-/*11*/          '*'.$upName.' invalid input.',
+                /*00*/ '*Please, submit the name.',
+                /*01*/ '*Name should be between 4 and 20 characters.',
+                /*02*/ '*Please, submit the SKU.',
+                /*03*/ '*SKU should be between 4 and 20 characters.',
+                /*04*/ '*This SKU is already registered.',
+                /*05*/ '*Please, submit the '.$name.'.',
+                /*06*/ '*Please, provide the data of indicated type in '.$name.'.',
+                /*07*/ '*Only positive numbers are accepetd in '.$name.'.',
+                /*08*/ '*Select the product type on the Type switcher.',
+                /*09*/ '*SKU invalid input.',
+                /*10*/ '*Name invalid input.',
+                /*11*/ '*'.$upName.' invalid input.',
             ];
             return $err[$n];
+        } catch (Exception $e) {
+            throw new Exception($e->getMessage());
         }
     }
-?>
+}

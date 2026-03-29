@@ -1,15 +1,17 @@
 <?php
-    declare(strict_types=1);
-    
-    namespace App\Type;
-    
-    use \App\Prod\Product;
-    
-    class Furniture extends Product implements TypeInterface
-    { 
-        // Create product description
-        public function createProductType(array $data): ?array
-        {
+declare(strict_types=1);
+
+namespace App\Type;
+
+use \App\Prod\Product;
+use \Exception;
+
+class Furniture extends Product implements TypeInterface
+{ 
+    // Create product description
+    public function createProductType(array $data): ?array
+    {
+        try {
             $height = $this->setIntNumber($data, 'height');
             $width = $this->setIntNumber($data, 'width');
             $length = $this->setIntNumber($data, 'length');
@@ -25,12 +27,18 @@
                 return $furniture;
             }
             return null;
+        } catch (Exception $e) {
+            throw new Exception($e->getMessage());
         }
+    }
 
-        // Display product description 
-        public function displayDescription(object $data): string
-        {
+    // Display product description 
+    public function displayDescription(object $data): string
+    {
+        try {
             return 'Dimension: '.$data->height.'x'.$data->width.'x'.$data->length;
+        } catch (Exception $e) {
+            throw new Exception($e->getMessage());
         }
-    };
-?>
+    }
+};

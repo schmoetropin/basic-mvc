@@ -1,24 +1,26 @@
 <?php
-    declare(strict_types=1);
-    
-    namespace App\Prod;
+declare(strict_types=1);
 
-    use \App\Con\Connection;
-    use \PDO;
-    
-    class DisplayProduct extends Product
+namespace App\Prod;
+
+use \App\Con\Connection;
+use \PDO;
+use \Exception;
+
+class DisplayProduct extends Product
+{
+    private Connection $con;
+
+    public function __construct()
     {
-        private Connection $con;
+        parent::__construct();
+        $this->con = new Connection();
+    }
 
-        public function __construct()
-        {
-            parent::__construct();
-            $this->con = new Connection();
-        }
-
-        // Get all ids from products
-        private function getAllProductsIds(): array
-        {
+    // Get all ids from products
+    private function getAllProductsIds(): array
+    {
+        try {
             $query = "SELECT id FROM product ORDER BY id DESC";
             $prepare = $this->con->con()->prepare($query);
             $prepare->execute();
@@ -29,11 +31,15 @@
                 }
             }
             return $arr;
+        } catch (Exception $e) {
+            throw new Exception($e->getMessage());
         }
+    }
 
-        // Display all products
-        public function display(): ?array
-        {
+    // Display all products
+    public function display(): ?array
+    {
+        try {
             $ids = $this->getAllProductsIds();
             $idsCount = count($ids);
             $arr = [];
@@ -50,6 +56,8 @@
                 ];
             }
             return $arr;
+        } catch (Exception $e) {
+            throw new Exception($e->getMessage());
         }
-    };
-?>
+    }
+};
