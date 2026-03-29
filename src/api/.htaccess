@@ -1,0 +1,15 @@
+RewriteEngine on 
+
+RewriteCond %{GET} ^(TRACE|TRACK|OPTIONS|HEAD)
+RewriteRule .* - [F]
+
+SetEnvIf Referer http://localhost:3000/ internal
+#SetEnvIf Referer http://marcospaulopeters-scandiwebjrtest.epizy.com internal 
+<Files *> 
+order Deny,Allow 
+Deny from all 
+Allow from env=internal 
+</Files> 
+
+ErrorDocument 403 http://localhost:3000/
+#ErrorDocument 403 http://marcospaulopeters-scandiwebjrtest.epizy.com

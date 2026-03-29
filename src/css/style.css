@@ -1,0 +1,171 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #fff;
+  overflow: hidden;
+}
+
+a {
+  text-decoration: none;
+}
+a:hover, a:active {
+  text-decoration: none;
+}
+a:visited {
+  color: #222;
+}
+
+.addProductForm input[type=text], .addProductForm input[type=number], .addProductForm select {
+  border: 1px solid #222;
+  background-color: #fff;
+  width: 250px;
+  padding: 2px;
+  height: 25px;
+  line-height: 19px;
+}
+
+.siteTop {
+  width: 100%;
+  height: 60px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  line-height: 60px;
+  background-color: #fff;
+  z-index: 99;
+}
+.siteTop h2 {
+  margin-left: 50px;
+  text-transform: capitalize;
+}
+
+.topButtoms {
+  width: 30%;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+.topButtoms a {
+  float: left;
+  margin: 10px 15px 0 0;
+}
+.topButtoms form {
+  height: 60px;
+}
+.topButtoms button {
+  margin-top: 10px;
+}
+
+.siteTop hr, .siteBottom hr {
+  width: 80%;
+  margin-left: 10%;
+}
+
+.siteBottom {
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  height: 40px;
+  line-height: 40px;
+  position: fixed;
+  text-align: center;
+  background-color: #fff;
+}
+
+.defaultButtom {
+  border: 1px solid #222;
+  background-color: #fff;
+  font-weight: bold;
+  padding: 6px;
+  text-transform: capitalize;
+  font-size: 12px;
+  height: 3.5em;
+  width: 10em;
+  text-align: center;
+  line-height: 30px;
+  box-sizing: border-box;
+  cursor: pointer;
+  color: #222;
+  box-shadow: 4px 4px 0 0 #666;
+}
+
+.siteContent {
+  width: 100%;
+  margin: 62px 0 10px 0;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  height: 85vh;
+}
+
+.contentBorder {
+  width: 90%;
+  margin-left: 5%;
+}
+
+.product {
+  border: 2px solid #222;
+  width: 205px;
+  height: 180px;
+  padding: 8px;
+  position: relative;
+  text-align: center;
+  margin: 8px;
+  float: left;
+}
+.product .delete-checkbox {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+}
+
+.productDetails {
+  margin-top: 40px;
+  font-size: 13px;
+}
+
+.addProductForm {
+  float: left;
+}
+.addProductForm p {
+  display: inline-block;
+  width: 65px;
+  margin: 15px 0;
+}
+
+.tSwitcher {
+  margin-top: 30px;
+}
+.tSwitcher select {
+  width: 125px;
+}
+.tSwitcher p {
+  display: inline-block;
+  width: 110px;
+  margin-top: 16px;
+}
+
+.divHiddenSwitcher {
+  display: none;
+}
+
+.errorMessage {
+  border: 1px solid #D50000;
+  background-color: #FFCDD2;
+  color: #B71C1C;
+  min-width: 450px;
+  padding: 6px;
+  border-radius: 6px;
+  display: inline-block;
+  font-weight: bold;
+  margin: 16px 0 0 55px;
+  text-align: center;
+}
+
+.disclaimer {
+  display: none;
+}
+
+/*# sourceMappingURL=style.css.map */

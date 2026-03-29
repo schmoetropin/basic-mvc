@@ -1,0 +1,141 @@
+@use 'variables'
+@use 'mixins'
+
+*
+    margin: 0
+    padding: 0
+
+body
+    background-color: variables.$default-background-color
+    overflow: hidden
+
+a
+    text-decoration: none
+    &:hover, &:active
+        text-decoration: none
+    &:visited 
+        color: variables.$font-border-color
+
+.addProductForm
+    input[type=text], input[type=number], select
+        @include mixins.default-border(1px)
+        @include mixins.imput-sel-prod
+
+.siteTop
+    @include mixins.width100
+    height: 60px
+    @include mixins.pos-fixed
+    top: 0
+    left: 0
+    line-height: 60px
+    background-color: variables.$default-background-color
+    z-index: 99
+    h2
+        margin-left: 50px
+        @include mixins.capt-text
+
+.topButtoms 
+    width: 30%
+    @include mixins.pos-absolute
+    top: 0
+    right: 0
+    a
+        float: left
+        margin:10px 15px 0 0
+    form
+        height: 60px
+    button
+        margin-top: 10px
+
+.siteTop hr, .siteBottom hr
+    width: 80%
+    margin-left: 10%
+
+.siteBottom
+    @include mixins.width100
+    bottom: 0
+    left: 0
+    height: 40px
+    line-height: 40px
+    @include mixins.pos-fixed
+    @include mixins.text-center
+    background-color: variables.$default-background-color
+
+.defaultButtom
+    @include mixins.default-border(1px)
+    background-color: variables.$default-background-color
+    font-weight: bold
+    padding: 6px
+    @include mixins.capt-text
+    font-size: 12px
+    height: 3.5em
+    width: 10em
+    @include mixins.text-center
+    line-height: 30px
+    box-sizing: border-box
+    cursor: pointer
+    color: #222
+    box-shadow: 4px 4px 0 0 variables.$shadow
+
+.siteContent
+    @include mixins.width100
+    margin: 62px 0 10px 0
+    overflow-x: hidden
+    overflow-y: scroll
+    height: 85vh
+
+.contentBorder
+    width: 90%
+    margin-left: 5%
+
+.product
+    @include mixins.default-border(2px)
+    width: 205px
+    height: 180px
+    padding: 8px
+    position: relative
+    @include mixins.text-center
+    margin: 8px
+    float: left
+    .delete-checkbox
+        @include mixins.pos-absolute
+        top: 5px
+        left: 5px
+
+.productDetails
+    margin-top: 40px
+    font-size: 13px
+
+.addProductForm
+    float: left
+    p 
+        display: inline-block
+        width: 65px
+        margin: 15px 0
+    
+.tSwitcher 
+    margin-top: 30px
+    select 
+        width: 125px
+    p
+        display: inline-block
+        width: 110px
+        margin-top: 16px
+
+.divHiddenSwitcher
+    display: none
+
+.errorMessage
+    border: 1px solid variables.$error-border
+    background-color: variables.$error-background
+    color: variables.$error-color
+    min-width: 450px
+    padding: 6px
+    border-radius: 6px
+    display: inline-block
+    font-weight: bold
+    margin: 16px 0 0 55px
+    @include mixins.text-center
+
+.disclaimer
+    display: none

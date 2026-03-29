@@ -1,0 +1,26 @@
+@use 'variables'
+
+@mixin width100
+    width: 100%
+
+@mixin text-center
+    text-align: center
+
+@mixin default-border($size)
+    border: $size solid variables.$font-border-color
+
+@mixin pos-fixed
+    position: fixed
+
+@mixin pos-absolute
+    position: absolute
+
+@mixin capt-text
+    text-transform: capitalize
+
+@mixin imput-sel-prod
+    background-color: variables.$default-background-color
+    width: 250px
+    padding:2px
+    height: 25px
+    line-height: 19px
